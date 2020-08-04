@@ -43,6 +43,16 @@ public class LoginRegisterController {
         return path;
     }
 
+//    @PostMapping("/login-error")
+//    public ModelAndView onLoginError(@ModelAttribute("username") String username) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("error", "bad.credentials");
+//        modelAndView.addObject("username", username);
+//
+//        modelAndView.setViewName("/auth/login");
+//        return modelAndView;
+//    }
+
 
     @GetMapping("/register")
     public String getRegisterForm(Model model) {

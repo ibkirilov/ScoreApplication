@@ -1,4 +1,4 @@
-package webproject.score.event;
+package webproject.score.events;
 
 import org.springframework.context.ApplicationEvent;
 

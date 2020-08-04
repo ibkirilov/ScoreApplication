@@ -54,3 +54,7 @@ body {
 .clickable:hover {
     background-color: rgba(230,230,230);
 }
+
+.clock {
+    font-size: 2em;
+}

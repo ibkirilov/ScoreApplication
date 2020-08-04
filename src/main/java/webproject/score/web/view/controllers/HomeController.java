@@ -1,11 +1,11 @@
 package webproject.score.web.view.controllers;
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.security.Principal;
 
 @Controller
 @AllArgsConstructor
@@ -13,7 +13,11 @@ public class HomeController {
 
     @GetMapping("/")
     public String getIndex() {
-        return "/home/index.html";
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            return "redirect:/home";
+        }
+        return "/home/index";
     }
 
     @GetMapping("/home")

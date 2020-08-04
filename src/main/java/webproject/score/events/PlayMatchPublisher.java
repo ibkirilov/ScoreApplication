@@ -1,4 +1,4 @@
-package webproject.score.event;
+package webproject.score.events;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;

@@ -13,7 +13,8 @@
 <div class="container">
     <div class="card border-0 shadow my-5">
         <div class="card-body p-5">
-            <h2 class="font-weight-light text-center">Welcome <span sec:authentication="name">, choose what happens with your team</h2>
+            <h2 class="font-weight-light text-center">Welcome <span th:text="${session.username}"></span>, choose what
+                happens with your team</h2>
 
             <ul class="list-inline text-center card-group">
 
@@ -24,7 +25,8 @@
                                  class="card-img-top" alt="Register image">
                             <div class="card-body">
                                 <h3 class="card-title">Team</h3>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid blanditiis labore molestias numquam recusandae voluptate?</p>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
+                                    blanditiis labore molestias numquam recusandae voluptate?</p>
                             </div>
                         </a>
                     </div>
@@ -37,7 +39,8 @@
                                  class="card-img-top" alt="Register image">
                             <div class="card-body">
                                 <h3 class="card-title">Players</h3>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid blanditiis labore molestias numquam recusandae voluptate?</p>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
+                                    blanditiis labore molestias numquam recusandae voluptate?</p>
                             </div>
                         </a>
                     </div>
@@ -50,7 +53,8 @@
                                  class="card-img-top" alt="Register image">
                             <div class="card-body">
                                 <h3 class="card-title">Group</h3>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid blanditiis labore molestias numquam recusandae voluptate?</p>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
+                                    blanditiis labore molestias numquam recusandae voluptate?</p>
                             </div>
                         </a>
                     </div>
@@ -63,7 +67,8 @@
                                  class="card-img-top" alt="Register image">
                             <div class="card-body">
                                 <h3 class="card-title">Matches</h3>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid blanditiis labore molestias numquam recusandae voluptate?</p>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
+                                    blanditiis labore molestias numquam recusandae voluptate?</p>
                             </div>
                         </a>
                     </div>
@@ -76,15 +81,23 @@
                                  class="card-img-top" alt="Register image">
                             <div class="card-body">
                                 <h3 class="card-title">Stadium</h3>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid blanditiis labore molestias numquam recusandae voluptate?</p>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
+                                    blanditiis labore molestias numquam recusandae voluptate?</p>
                             </div>
                         </a>
                     </div>
                 </li>
-
             </ul>
 
-            <h2 class="text-center mt-5">Time until next match: TIMER!</h2>
+            <div>
+            <h2>Click here to see how many rounds are played.</h2>
+            <a class="btn btn-primary" id="reveal" role="button">Rounds</a>
+            <div id="rounds"></div>
+            </div>
+
+            <h2 class="text-center mt-5">Matches are played in 09:00 and 21:00. The time now is
+                <div class="clock"></div>
+            </h2>
 
             <div style="height: 30vh; overflow: auto;"></div>
         </div>

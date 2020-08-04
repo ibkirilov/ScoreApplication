@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserAuthenticationFailureHandler userAuthenticationFailureHandler;
 
-    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
     public WebSecurityConfig(UsersService usersService, HashingService hashingService) {
@@ -37,24 +37,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/favicon.ico", "/js/*", "/css/*").permitAll()
+                .antMatchers("/favicon.ico", "/js/**", "/css/**").permitAll()
                 .antMatchers().permitAll()
-                .antMatchers("/users/login").permitAll()
+                .antMatchers("/users/login", "/users/login-error").permitAll()
                 .antMatchers("/users/register").permitAll()
                 .antMatchers("/error").permitAll()
                 .antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/play").access("hasRole('ROLE_ADMIN')")
-                //todo add only admin pages
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/users/login").permitAll()
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .successForwardUrl("/home")
+                .formLogin()
+                    .loginPage("/users/login")
+                    .loginProcessingUrl("/users/login")
+                    .usernameParameter("username")
+                    .passwordParameter("password")
+                    .successForwardUrl("/home")
                 .successHandler(userAuthenticationSuccessHandler)
                 .failureHandler(userAuthenticationFailureHandler)
                 .and()
-                .logout().permitAll();
+                .logout()
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/users/login")
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID");
     }
 
     @Autowired

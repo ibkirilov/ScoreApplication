@@ -41,7 +41,7 @@ public class MatchesServiceImpl implements MatchesService {
         }
     }
 
-    @Scheduled(cron = "0 0 9,21 ? * * *")
+    @Scheduled(cron = "0 0 9,21 * * ?")
     @Override
     public void play() {
 

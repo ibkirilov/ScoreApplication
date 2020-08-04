@@ -67,6 +67,4 @@ public class AdminController {
         this.usersService.addRoleById(id, "ROLE_ADMIN");
         return "redirect:/admin/admin";
     }
-
-
 }
