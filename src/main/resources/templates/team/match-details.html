@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="~{_shared/head}"/>
+
+<body>
+
+<th:block th:include="~{_shared/nav}"></th:block>
+
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <h2 class="font-weight-light text-center">Here are your matches, <span sec:authentication="name"></h2>
+
+            <table class="table mt-5">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Round</th>
+                    <th scope="col">Home team</th>
+                    <th scope="col">Result</th>
+                    <th scope="col">Away team</th>
+                    <th scope="col">Stadium</th>
+                </tr>
+                </thead>
+                <tbody th:object="${match}">
+                <tr>
+                    <th th:text="*{round}" scope="row"></th>
+                    <td th:text="*{homeTeam}"></td>
+                    <td th:if="*{winner!=null}" th:text="|*{homeGoals} : *{awayGoals}|"></td>
+                    <td th:if="*{winner==null}" th:text="|not played|"></td>
+                    <td th:text="*{awayTeam}"></td>
+                    <td th:text="*{stadium}"></td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>
+                        <table th:each="item : ${homeScorers}">
+                            <tr th:text="${item}"></tr>
+                        </table>
+                    </td>
+                    <td></td>
+                    <td>
+                        <table th:each="item : ${awayScorers}">
+                            <tr th:text="${item}"></tr>
+                        </table>
+                    </td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div style="height: 30vh; overflow: auto;"></div>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="~{_shared/footer}"/>
+
+</div>
+</div>
+</body>
+</html>

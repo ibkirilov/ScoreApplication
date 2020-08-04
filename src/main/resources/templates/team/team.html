@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="~{_shared/head}"/>
+
+<body>
+
+<th:block th:include="~{_shared/nav}"></th:block>
+
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div th:object="${teamViewModel}" class="card-body p-5">
+            <h2 class="font-weight-light text-center" th:text="|*{name} *{town}|"></h2>
+
+            <ul  class="text-center mt-5">
+                <li><img width="300" th:src="*{logoLink}" alt="" class="mb-5"></li>
+                <li th:text="|Team name: *{name}|">Team name: PFK Cherno more</li>
+                <li th:text="|Town: *{town}|">Town: Varna</li>
+                <li th:text="|Group: *{league.name}|">Group: Premier league</li>
+                <li th:text="|Stadium name: *{stadium.name}|">Stadium name: Ticha</li>
+                <li th:text="|Stadium capacity: *{stadium.capacity}|">Stadium capacity: 12000</li>
+            </ul>
+
+            <div style="height: 35vh; overflow: auto;"></div>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="~{_shared/footer}"/>
+
+</div>
+</div>
+</body>
+</html>

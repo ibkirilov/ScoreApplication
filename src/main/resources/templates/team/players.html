@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="~{_shared/head}"/>
+
+<body>
+
+<th:block th:include="~{_shared/nav}"></th:block>
+
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <h2 class="font-weight-light text-center">Here are your players <span sec:authentication="name"></span></h2>
+
+            <div class="players-container">
+
+
+                <table class="table mt-5">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Position</th>
+                        <th scope="col">Goalkeeping</th>
+                        <th scope="col">Defending</th>
+                        <th scope="col">Playmaking</th>
+                        <th scope="col">Scoring</th>
+                        <th scope="col">Form</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="player, iterator : ${players}">
+                    <tr th:object="${player}">
+                        <th scope="row" th:text="${iterator.index + 1}"></th>
+                        <td th:text="*{firstName}"></td>
+                        <td th:text="*{lastName}"></td>
+                        <td th:text="*{age}"></td>
+                        <td th:text="*{position}"></td>
+                        <td th:text="*{goalkeeping}">43</td>
+                        <td th:text="*{defending}">43</td>
+                        <td th:text="*{playmaking}">43</td>
+                        <td th:text="*{scoring}">43</td>
+                        <td th:text="*{form}">7</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="height: 30vh; overflow: auto;"></div>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="~{_shared/footer}"/>
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="~{_shared/head}"/>
+
+<body>
+
+<th:block th:include="~{_shared/nav}"></th:block>
+
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <h2 class="font-weight-light text-center">This is "<span th:text="${league.name}"></span>"</h2>
+
+            <div class="players-container">
+
+                <table class="table mt-5">
+
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Position</th>
+                        <th scope="col">Team</th>
+                        <th scope="col">Matches played</th>
+                        <th scope="col">Points</th>
+                    </tr>
+                    </thead>
+
+                    <tbody th:each="team, iterator : ${teams}">
+                    <tr th:object="${team}">
+                        <th scope="row" th:text="${iterator.index + 1}">1</th>
+                        <td th:text="|*{name} *{town}|">Cherno more Varna</td>
+                        <td th:text="${league.getRoundsPlayed()}">13</td>
+                        <td th:text="*{points}">5</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="height: 30vh; overflow: auto;"></div>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="~{_shared/footer}"/>
+
+</div>
+</div>
+</body>
+</html>

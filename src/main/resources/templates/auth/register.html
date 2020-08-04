@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="~{_shared/head}"/>
+
+<body>
+
+<th:block th:include="~{_shared/nav}"></th:block>
+
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <h2 class="font-weight-light text-center">Register your profile and team here!</h2>
+            <div class="auth-img">
+                <img src="http://aztrucklist.com/uploads/avatars/blank.png" alt="avatar" class="avatar">
+            </div>
+
+            <p><h5 class="text-center">Here you have to add info about your profile:</h5></p>
+            <form th:object="${registerUserViewModel}" th:action="@{/users/register}" th:method="POST" enctype="multipart/form-data">
+
+                <div class="form-group row">
+                    <label for="username" class="col-sm-2 col-form-label"><h5>Username</h5></label>
+                    <div class="col-sm-10">
+                        <input th:field="*{username}" th:errorclass="bg-danger" class="form-control" id="username" name="username" placeholder="Enter your username here!">
+                    </div>
+                </div>
+                <small th:each="e : ${#fields.errors('username')}" th:text="${e}" class="text-danger"></small>
+
+                <div class="form-group row">
+                    <label for="password" class="col-sm-2 col-form-label"><h5>Password</h5></label>
+                    <div class="col-sm-10">
+                        <input th:field="*{password}" th:errorclass="bg-danger" type="password" class="form-control" id="password" name="password"
+                               placeholder="Enter your password here!">
+                    </div>
+                </div>
+                <small th:each="e : ${#fields.errors('password')}" th:text="${e}" class="text-danger"></small>
+
+                <div class="form-group row">
+                    <label for="confirmPassword" class="col-sm-2 col-form-label"><h5>Confirm password</h5></label>
+                    <div class="col-sm-10 align-middle">
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                               placeholder="Confirm your password here!">
+                    </div>
+                </div>
+                <small th:if="${passwordsNotEqual}" class="text-danger">Passwords are not equal!</small>
+
+                <div class="form-group row">
+                    <label for="email" class="col-sm-2 col-form-label"><h5>Email</h5></label>
+                    <div class="col-sm-10">
+                        <input th:field="*{email}" th:errorclass="bg-danger" type="email" class="form-control" id="email" name="email"
+                               placeholder="Enter your email here!">
+                    </div>
+                </div>
+                <small th:each="e : ${#fields.errors('email')}" th:text="${e}"></small>
+
+                <p><h5 class="text-center">Now we need info about your new team:</h5></p>
+
+                <div class="form-group row">
+                    <label for="teamName" class="col-sm-2 col-form-label"><h5>Team name</h5></label>
+                    <div class="col-sm-10 align-middle">
+                        <input th:field="*{teamName}" th:errorclass="bg-danger" class="form-control" id="teamName" name="teamName"
+                               placeholder="Enter the name of the team here!">
+                    </div>
+                </div>
+                <small th:each="e : ${#fields.errors('teamName')}" th:text="${e}" class="text-danger"></small>
+
+                <div class="form-group row">
+                    <label for="town" class="col-sm-2 col-form-label"><h5>Town</h5></label>
+                    <div class="col-sm-10 align-middle">
+                        <input th:field="*{town}" th:errorclass="bg-danger" class="form-control" id="town" name="town"
+                               placeholder="Enter the town of the team here!">
+                    </div>
+                </div>
+                <small th:each="e : ${#fields.errors('town')}" th:text="${e}" class="text-danger"></small>
+
+                <div class="form-group row">
+                    <label for="stadiumName" class="col-sm-2 col-form-label"><h5>Stadium name</h5></label>
+                    <div class="col-sm-10 align-middle">
+                        <input th:field="*{stadiumName}" th:errorclass="bg-danger" class="form-control" id="stadiumName" name="stadiumName"
+                               placeholder="Enter the name of the stadium here!">
+                    </div>
+                </div>
+                <small th:each="e : ${#fields.errors('stadiumName')}" th:text="${e}" class="text-danger"></small>
+
+                <div class="form-group row">
+                    <label for="fanClub" class="col-sm-2 col-form-label"><h5>Fan club name</h5></label>
+                    <div class="col-sm-10 align-middle">
+                        <input th:field="*{fanClub}" th:errorclass="bg-danger" class="form-control" id="fanClub" name="fanClub"
+                               placeholder="Enter the name of the fan club here!">
+                    </div>
+                </div>
+                <small th:each="e : ${#fields.errors('fanClub')}" th:text="${e}" class="text-danger"></small>
+
+                <div class="form-group row">
+                    <label for="add-logo-image" class="col-sm-2 col-form-label"><h5>Logo</h5></label>
+                    <div class="col-sm-10 align-middle">
+                        <input th:type="file" class="form-control-file" id="add-logo-image" name="logoLink">
+                    </div>
+                </div>
+                <small th:each="e : ${#fields.errors('logoLink')}" th:text="${e}" class="text-danger"></small>
+
+
+                <div class="form-group row">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block ml-3 mr-3 mt-3"><h4>Register</h4>
+                    </button>
+                </div>
+            </form>
+            <div style="height: 30vh; overflow: auto;"></div>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="~{_shared/footer}"/>
+
+</div>
+</div>
+</body>
+</html>
+

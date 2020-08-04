@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="~{_shared/head}"/>
+
+<body>
+
+<th:block th:include="~{_shared/nav}"></th:block>
+
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <h2 class="font-weight-light text-center">ADMIN PANEL</h2>
+
+            <table class="table mt-5">
+
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">List of authorities</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Edit</th>
+                </tr>
+                </thead>
+
+                <tbody th:each="user, iterator : ${users}">
+                <tr th:object="${user}">
+                    <th scope="row" th:text="${iterator.index + 1}"></th>
+                    <td th:text="*{id}"></td>
+                    <td th:text="*{username}"></td>
+                    <td>
+                        <th:block th:if="*{authorities.contains('ROLE_ADMIN')}">
+                            <span th:text="ADMIN"></span>
+                        </th:block>
+                        <th:block th:if="*{authorities.contains('ROLE_USER')}">
+                            <span th:text="USER"></span>
+                        </th:block>
+                    </td>
+                    <td th:text="*{email}"></td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Roles navigation
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a th:if="*{!authorities.contains('ROLE_USER')}" class="dropdown-item" th:href="@{/admin/user/{id}/add-user(id = *{id})}">Add user
+                                    role</a>
+                                <a th:if="*{!authorities.contains('ROLE_ADMIN')}" class="dropdown-item" th:href="@{/admin/user/{id}/add-admin(id = *{id})}">Add admin
+                                    role</a>
+                                <a th:if="*{authorities.contains('ROLE_USER')}" class="dropdown-item" th:href="@{/admin/user/{id}/remove-user(id = *{id})}">Remove user
+                                    role</a>
+                                <a th:if="*{authorities.contains('ROLE_ADMIN')}" class="dropdown-item" th:href="@{/admin/user/{id}/remove-admin(id = *{id})}">Remove admin
+                                    role</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div style="height: 30vh; overflow: auto;"></div>
+        </div>
+    </div>
+</div>
+<th:block th:include="~{_shared/footer}"/>
+
+</div>
+</div>
+</body>
+</html>

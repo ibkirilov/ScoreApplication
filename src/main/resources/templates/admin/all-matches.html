@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="~{_shared/head}"/>
+
+<body>
+
+<th:block th:include="~{_shared/nav}"></th:block>
+
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <h2 class="font-weight-light text-center">Here are all matches, <span sec:authentication="name"></h2>
+
+            <table class="table mt-5">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Home team</th>
+                    <th scope="col">Result</th>
+                    <th scope="col">Away team</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="clickable" onclick="window.location='/matches/{id}'">
+                    <th scope="row">1</th>
+                    <td>Cherno more Varna</td>
+                    <td>3:2</td>
+                    <td>Levski Sofia</td>
+                </tr>
+                <tr class="clickable" onclick="window.location='/matches/{id}'">
+                    <th scope="row">2</th>
+                    <td>Cherno more Varna</td>
+                    <td>3:2</td>
+                    <td>Levski Sofia</td>
+                </tr>
+                <tr class="clickable" onclick="window.location='/matches/{id}'">
+                    <th scope="row">3</th>
+                    <td>Cherno more Varna</td>
+                    <td>3:2</td>
+                    <td>Levski Sofia</td>
+                </tr>
+                <tr class="clickable" onclick="window.location='/matches/{id}'">
+                    <th scope="row">4</th>
+                    <td>Cherno more Varna</td>
+                    <td>3:2</td>
+                    <td>Levski Sofia</td>
+                </tr>
+                <tr class="clickable" onclick="window.location='/matches/{id}'">
+                    <th scope="row">5</th>
+                    <td>Cherno more Varna</td>
+                    <td>3:2</td>
+                    <td>Levski Sofia</td>
+                </tr>
+                <tr class="clickable" onclick="window.location='/matches/{id}'">
+                    <th scope="row">6</th>
+                    <td>Cherno more Varna</td>
+                    <td>3:2</td>
+                    <td>Levski Sofia</td>
+                </tr>
+                <tr class="clickable" onclick="window.location='/matches/{id}'">
+                    <th scope="row">7</th>
+                    <td>Cherno more Varna</td>
+                    <td>3:2</td>
+                    <td>Levski Sofia</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div style="height: 30vh; overflow: auto;"></div>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="~{_shared/footer}"/>
+
+</div>
+</div>
+</body>
+</html>
