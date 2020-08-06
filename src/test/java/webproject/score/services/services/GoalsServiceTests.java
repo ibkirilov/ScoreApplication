@@ -13,14 +13,12 @@ import webproject.score.data.repositories.GoalRepository;
 import webproject.score.services.factories.PlayerFactory;
 import webproject.score.services.models.MatchServiceModel;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import static org.mockito.ArgumentMatchers.any;
 import static org.junit.Assert.*;
 
-@RunWith(SpringRunner.class)
 public class GoalsServiceTests extends TestBase {
     @Autowired
     ModelMapper modelMapper;

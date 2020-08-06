@@ -10,7 +10,6 @@ import webproject.score.data.models.Position;
 
 import static org.junit.Assert.*;
 
-@RunWith(SpringRunner.class)
 public class PlayerFactoryTests extends TestBase {
 
     @Autowired

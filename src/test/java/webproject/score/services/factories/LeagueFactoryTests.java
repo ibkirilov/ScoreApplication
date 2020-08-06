@@ -9,7 +9,6 @@ import webproject.score.data.models.League;
 
 import static org.junit.Assert.*;
 
-@RunWith(SpringRunner.class)
 public class LeagueFactoryTests extends TestBase {
 
     @Autowired

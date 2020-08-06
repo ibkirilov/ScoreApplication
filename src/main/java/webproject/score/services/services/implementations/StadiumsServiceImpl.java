@@ -32,6 +32,7 @@ public class StadiumsServiceImpl implements StadiumsService {
 
         Stadium oldStadium = this.stadiumRepository.findById(stadium.getId()).orElse(null);
         stadium.setId(oldStadium.getId());
-        return this.stadiumRepository.saveAndFlush(stadium);
+        this.stadiumRepository.saveAndFlush(stadium);
+        return stadium;
     }
 }

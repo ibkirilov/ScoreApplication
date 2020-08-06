@@ -21,7 +21,6 @@ import java.util.Set;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 
-@RunWith(SpringRunner.class)
 public class AuthServiceTests extends TestBase {
     RegisterUserServiceModel user = new RegisterUserServiceModel();
 

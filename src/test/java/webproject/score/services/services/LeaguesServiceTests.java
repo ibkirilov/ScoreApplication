@@ -1,12 +1,10 @@
 package webproject.score.services.services;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 import webproject.score.base.TestBase;
 import webproject.score.data.models.League;
 import webproject.score.data.models.Team;
@@ -20,8 +18,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 
-@RunWith(SpringRunner.class)
-public class LeagueServiceTests extends TestBase {
+public class LeaguesServiceTests extends TestBase {
     @Autowired
     LeaguesService leaguesService;
 

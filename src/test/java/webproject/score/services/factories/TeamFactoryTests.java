@@ -10,7 +10,6 @@ import webproject.score.data.models.Team;
 
 import static org.junit.Assert.*;
 
-@RunWith(SpringRunner.class)
 public class TeamFactoryTests extends TestBase {
 
     @Autowired

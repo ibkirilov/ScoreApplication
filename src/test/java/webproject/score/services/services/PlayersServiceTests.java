@@ -1,25 +1,26 @@
 package webproject.score.services.services;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 import webproject.score.base.TestBase;
 import webproject.score.data.models.Match;
 import webproject.score.data.models.Player;
 import webproject.score.data.models.Team;
 import webproject.score.data.repositories.MatchRepository;
 import webproject.score.data.repositories.PlayerRepository;
+import webproject.score.services.models.PlayerServiceModel;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 
-@RunWith(SpringRunner.class)
 public class PlayersServiceTests extends TestBase {
     private int idCount = 0;
 
@@ -34,6 +35,9 @@ public class PlayersServiceTests extends TestBase {
 
     @Autowired
     PlayersService playersService;
+
+    @Autowired
+    ModelMapper modelMapper;
 
     @Test
     public void createSetOfPlayersForNewTeam_shouldReturnSetOfPlayers() {
@@ -75,5 +79,27 @@ public class PlayersServiceTests extends TestBase {
 
         assertTrue(player.getForm() != 0);
         assertTrue(player1.getForm() != 10);
+    }
+
+    @Test
+    public void getListOfPlayersByTeamId_shouldReturnListOfPlayersServiceModel() {
+        Player player = new Player();
+        player.setId("id1");
+        Player player1 = new Player();
+        player1.setId("id2");
+        Player player2 = new Player();
+        player2.setId("id3");
+        Player player3 = new Player();
+        player3.setId("id4");
+
+        Set<Player> players = new HashSet<>(Set.of(player, player1, player2, player3));
+        Mockito.when(this.playerRepository.findPlayersByTeamId(any(String.class))).thenReturn(players);
+
+        List<PlayerServiceModel> playersCheck = players
+                .stream()
+                .map(pl -> this.modelMapper.map(pl, PlayerServiceModel.class))
+                .collect(Collectors.toList());
+
+        assertEquals(playersCheck, this.playersService.getPlayersByTeamId("id"));
     }
 }
