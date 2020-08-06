@@ -1,7 +1,8 @@
 package webproject.score.services.services;
 
+import webproject.score.data.models.User;
 import webproject.score.services.models.RegisterUserServiceModel;
 
 public interface AuthService {
-    void register(RegisterUserServiceModel model);
+    User register(RegisterUserServiceModel model);
 }

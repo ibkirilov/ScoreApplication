@@ -10,7 +10,6 @@ import webproject.score.errors.AllGroupsAreFullException;
 import webproject.score.services.factories.LeagueFactory;
 import webproject.score.services.models.LeaguesServiceModel;
 import webproject.score.services.services.LeaguesService;
-import webproject.score.services.services.TeamsService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,7 +44,7 @@ public class LeaguesServiceImpl implements LeaguesService {
         if (league1.getTeams().size() == 4) {
             League league2 = leagueRepository.getLeagueByName("Championship League");
             if (league2.getTeams().size() == 4) {
-                throw new AllGroupsAreFullException("All groups are full");
+                throw new AllGroupsAreFullException("All groups are full. Please call the admin to create new group for you!");
             } else {
                 return league2;
             }

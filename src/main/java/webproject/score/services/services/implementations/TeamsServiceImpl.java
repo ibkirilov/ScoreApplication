@@ -48,7 +48,7 @@ public class TeamsServiceImpl implements TeamsService {
                     String teamName = String.format("Robo team %d", ++teamsCount);
                     League league = this.leaguesService.getLeague();
                     String stadiumName = String.format("Stadium of %s", teamName);
-                    Team team = this.teamFactory.create(teamName, league, stadiumName);
+                    Team team = this.teamFactory.create(teamName, league);
 
                     this.teamRepository.save(team);
 

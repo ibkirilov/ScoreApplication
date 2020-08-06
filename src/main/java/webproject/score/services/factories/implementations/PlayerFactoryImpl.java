@@ -6,6 +6,8 @@ import webproject.score.data.models.Player;
 import webproject.score.data.models.Position;
 import webproject.score.services.factories.PlayerFactory;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Locale;
 
 @Factory
@@ -23,6 +25,8 @@ public class PlayerFactoryImpl implements PlayerFactory {
         player.setAge(getRandomNumber(18,32));
 
         player.setForm(getRandomNumber(1, 10));
+
+        player.setGoals(new ArrayList<>());
 
         setSkills(player);
 

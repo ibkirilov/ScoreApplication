@@ -3,6 +3,7 @@ package webproject.score.services.services.implementations;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import webproject.score.data.models.Role;
 import webproject.score.data.models.User;
 import webproject.score.data.repositories.UserRepository;
@@ -34,7 +35,8 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public void register(RegisterUserServiceModel model) {
+    @Transactional
+    public User register(RegisterUserServiceModel model) {
         if(!authValidationService.isValid(model)) {
             throw new NotValidUserRegisterInfoException("Invalid user registration info!");
         }
@@ -46,7 +48,7 @@ public class AuthServiceImpl implements AuthService {
         user.setCredentialsNonExpired(true);
         user.setEnabled(true);
         Set<Role> authorities = new HashSet<>();
-        Role role = new Role();
+        Role role;
         if (userRepository.count() == 0) {
             role = rolesService.getRole("ROLE_ADMIN");
             authorities.add(role);
@@ -56,6 +58,6 @@ public class AuthServiceImpl implements AuthService {
 
         user.setAuthorities(authorities);        
 
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 }

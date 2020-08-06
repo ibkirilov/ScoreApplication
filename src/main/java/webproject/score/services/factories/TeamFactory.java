@@ -4,5 +4,5 @@ import webproject.score.data.models.League;
 import webproject.score.data.models.Team;
 
 public interface TeamFactory {
-    Team create(String name, League league, String stadiumName);
+    Team create(String name, League league);
 }

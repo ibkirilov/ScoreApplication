@@ -1,13 +1,12 @@
 package webproject.score.data.models;
 
-import ch.qos.logback.core.encoder.EncoderBase;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import webproject.score.data.models.base.BaseEntity;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
@@ -49,5 +48,5 @@ public class Player extends BaseEntity {
     private Integer form;
 
     @OneToMany(mappedBy = "player", fetch = FetchType.EAGER)
-    private Set<Goal> goals;
+    private List<Goal> goals;
 }

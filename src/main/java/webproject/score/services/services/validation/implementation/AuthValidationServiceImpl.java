@@ -22,7 +22,7 @@ public class AuthValidationServiceImpl implements AuthValidationService {
                 this.isUsernameFree(user.getUsername());
     }
 
-    private boolean isUsernameFree(String username) {
+    public boolean isUsernameFree(String username) {
         return !this.userRepository.existsByUsername(username);
     }
 

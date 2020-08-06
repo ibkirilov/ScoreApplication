@@ -15,6 +15,7 @@ import webproject.score.services.services.LeaguesService;
 import webproject.score.services.services.PlayersService;
 import webproject.score.services.services.TeamsService;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -43,29 +44,29 @@ public class PlayersServiceImpl implements PlayersService {
 
         for (int i = 0; i < 1; i++) {
             Player player1 = playerFactory.create(Position.GOALKEEPER);
-            players.add(player1);
             player1.setTeam(team);
+            players.add(player1);
             playerRepository.saveAndFlush(player1);
         }
 
         for (int i = 0; i < 4; i++) {
             Player player = playerFactory.create(Position.DEFENDER);
-            players.add(player);
             player.setTeam(team);
+            players.add(player);
             playerRepository.saveAndFlush(player);
         }
 
         for (int i = 0; i < 4; i++) {
             Player player = playerFactory.create(Position.MIDFIELDER);
-            players.add(player);
             player.setTeam(team);
+            players.add(player);
             playerRepository.saveAndFlush(player);
         }
 
         for (int i = 0; i < 2; i++) {
             Player player = playerFactory.create(Position.FORWARD);
-            players.add(player);
             player.setTeam(team);
+            players.add(player);
             playerRepository.saveAndFlush(player);
         }
 
