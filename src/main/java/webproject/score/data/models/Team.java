@@ -41,7 +41,7 @@ public class Team extends BaseEntity {
     @Column(name = "fanclub_name")
     private String fanClubName;
 
-    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Player> players;
 
     @OneToOne

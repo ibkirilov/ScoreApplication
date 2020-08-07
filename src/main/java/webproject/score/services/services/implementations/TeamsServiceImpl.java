@@ -95,14 +95,19 @@ public class TeamsServiceImpl implements TeamsService {
     public Double getTeamPower(Set<PlayerServiceModel> teamPlayers) {
         double power = 0.0;
         for (PlayerServiceModel player : teamPlayers) {
-            if (player.getPosition() == Position.GOALKEEPER) {
-                power += (player.getGoalkeeping() * 4 + player.getDefending() + player.getPlaymaking() / 2d + player.getScoring() / 4d) * (1 + (player.getForm() - 5) / 100d);
-            } else if (player.getPosition() == Position.DEFENDER) {
-                power += (player.getGoalkeeping() / 1.5d + player.getDefending() * 4 + player.getPlaymaking() * 2d + player.getScoring()) * (1 + (player.getForm() - 5) / 100d);
-            } else if (player.getPosition() == Position.MIDFIELDER) {
-                power += (player.getGoalkeeping() / 4d + player.getDefending() * 2 + player.getPlaymaking() * 4 + player.getScoring() * 2) * (1 + (player.getForm() - 5) / 100d);
-            } else if (player.getPosition() == Position.FORWARD) {
-                power += (player.getGoalkeeping() / 4d + player.getDefending() + player.getPlaymaking() * 2 + player.getScoring() * 4) * (1 + (player.getForm() - 5) / 100d);
+            switch (player.getPosition()) {
+                case GOALKEEPER:
+                    power += (player.getGoalkeeping() * 4 + player.getDefending() + player.getPlaymaking() / 2d + player.getScoring() / 4d) * (1 + (player.getForm() - 5) / 100d);
+                    break;
+                case DEFENDER:
+                    power += (player.getGoalkeeping() / 1.5d + player.getDefending() * 4 + player.getPlaymaking() * 2d + player.getScoring()) * (1 + (player.getForm() - 5) / 100d);
+                    break;
+                case MIDFIELDER:
+                    power += (player.getGoalkeeping() / 4d + player.getDefending() * 2 + player.getPlaymaking() * 4 + player.getScoring() * 2) * (1 + (player.getForm() - 5) / 100d);
+                    break;
+                case FORWARD:
+                    power += (player.getGoalkeeping() / 4d + player.getDefending() + player.getPlaymaking() * 2 + player.getScoring() * 4) * (1 + (player.getForm() - 5) / 100d);
+                    break;
             }
         }
         return power;
@@ -118,17 +123,21 @@ public class TeamsServiceImpl implements TeamsService {
         Team homeTeam = match.getHomeTeam();
         Team awayTeam = match.getAwayTeam();
 
-        if (match.getWinner().equals("home")) {
-            homeTeam.setPoints(homeTeam.getPoints() + 3);
-            this.teamRepository.save(homeTeam);
-        } else if (match.getWinner().equals("away")) {
-            awayTeam.setPoints(awayTeam.getPoints() + 3);
-            this.teamRepository.save(awayTeam);
-        } else if (match.getWinner().equals("tie")) {
-            homeTeam.setPoints(homeTeam.getPoints() + 1);
-            awayTeam.setPoints(awayTeam.getPoints() + 1);
-            this.teamRepository.save(homeTeam);
-            this.teamRepository.save(awayTeam);
+        switch (match.getWinner()) {
+            case "home":
+                homeTeam.setPoints(homeTeam.getPoints() + 3);
+                this.teamRepository.save(homeTeam);
+                break;
+            case "away":
+                awayTeam.setPoints(awayTeam.getPoints() + 3);
+                this.teamRepository.save(awayTeam);
+                break;
+            case "tie":
+                homeTeam.setPoints(homeTeam.getPoints() + 1);
+                awayTeam.setPoints(awayTeam.getPoints() + 1);
+                this.teamRepository.save(homeTeam);
+                this.teamRepository.save(awayTeam);
+                break;
         }
     }
 

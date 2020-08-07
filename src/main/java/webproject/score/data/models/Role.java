@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import webproject.score.data.models.base.BaseEntity;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Getter

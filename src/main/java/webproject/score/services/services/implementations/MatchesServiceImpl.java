@@ -103,8 +103,6 @@ public class MatchesServiceImpl implements MatchesService {
                     this.matchRepository.save(this.modelMapper.map(match, Match.class));
                     this.teamsService.addPointsToTeams(match);
                 });
-
-
     }
 
     @Override
@@ -132,28 +130,6 @@ public class MatchesServiceImpl implements MatchesService {
                 .distinct()
                 .findFirst()
                 .orElse(null);
-    }
-
-    private void setTeamPowerToTeams(List<MatchServiceModel> matchesForPlay) {
-
-        matchesForPlay
-                .forEach(match -> {
-                    match.setHomeTeamPower(this.teamsService
-                            .getTeamPower(match
-                                    .getHomeTeam()
-                                    .getPlayers()
-                                    .stream()
-                                    .map(player -> this.modelMapper.map(player, PlayerServiceModel.class))
-                                    .collect(Collectors.toSet())));
-
-                    match.setAwayTeamPower(this.teamsService
-                            .getTeamPower(match
-                                    .getAwayTeam()
-                                    .getPlayers()
-                                    .stream()
-                                    .map(player -> this.modelMapper.map(player, PlayerServiceModel.class))
-                                    .collect(Collectors.toSet())));
-                });
     }
 
     @Override
@@ -202,5 +178,27 @@ public class MatchesServiceImpl implements MatchesService {
 
     private Integer getRandomGoals(int min, int max) {
         return (int) (Math.random() * (max - min + 1) + min);
+    }
+
+    private void setTeamPowerToTeams(List<MatchServiceModel> matchesForPlay) {
+
+        matchesForPlay
+                .forEach(match -> {
+                    match.setHomeTeamPower(this.teamsService
+                            .getTeamPower(match
+                                    .getHomeTeam()
+                                    .getPlayers()
+                                    .stream()
+                                    .map(player -> this.modelMapper.map(player, PlayerServiceModel.class))
+                                    .collect(Collectors.toSet())));
+
+                    match.setAwayTeamPower(this.teamsService
+                            .getTeamPower(match
+                                    .getAwayTeam()
+                                    .getPlayers()
+                                    .stream()
+                                    .map(player -> this.modelMapper.map(player, PlayerServiceModel.class))
+                                    .collect(Collectors.toSet())));
+                });
     }
 }

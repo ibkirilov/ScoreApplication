@@ -7,7 +7,6 @@ import webproject.score.data.models.Position;
 import webproject.score.services.factories.PlayerFactory;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Locale;
 
 @Factory
@@ -35,26 +34,31 @@ public class PlayerFactoryImpl implements PlayerFactory {
 
     private void setSkills(Player player) {
 
-        if (player.getPosition() == Position.GOALKEEPER) {
-            player.setGoalkeeping(getRandomNumber(60, 100));
-            player.setDefending(getRandomNumber(10, 60));
-            player.setPlaymaking(getRandomNumber(0, 50));
-            player.setScoring(getRandomNumber(0, 40));
-        } else if (player.getPosition() == Position.DEFENDER) {
-            player.setGoalkeeping(getRandomNumber(0, 40));
-            player.setDefending(getRandomNumber(60, 100));
-            player.setPlaymaking(getRandomNumber(20, 70));
-            player.setScoring(getRandomNumber(10, 60));
-        } else if (player.getPosition() == Position.MIDFIELDER) {
-            player.setGoalkeeping(getRandomNumber(0, 30));
-            player.setDefending(getRandomNumber(20, 70));
-            player.setPlaymaking(getRandomNumber(60, 100));
-            player.setScoring(getRandomNumber(20, 70));
-        } else {
-            player.setGoalkeeping(getRandomNumber(0, 20));
-            player.setDefending(getRandomNumber(10, 50));
-            player.setPlaymaking(getRandomNumber(30, 70));
-            player.setScoring(getRandomNumber(60, 100));
+        switch (player.getPosition()) {
+            case GOALKEEPER:
+                player.setGoalkeeping(getRandomNumber(60, 100));
+                player.setDefending(getRandomNumber(10, 60));
+                player.setPlaymaking(getRandomNumber(0, 50));
+                player.setScoring(getRandomNumber(0, 40));
+                break;
+            case DEFENDER:
+                player.setGoalkeeping(getRandomNumber(0, 40));
+                player.setDefending(getRandomNumber(60, 100));
+                player.setPlaymaking(getRandomNumber(20, 70));
+                player.setScoring(getRandomNumber(10, 60));
+                break;
+            case MIDFIELDER:
+                player.setGoalkeeping(getRandomNumber(0, 30));
+                player.setDefending(getRandomNumber(20, 70));
+                player.setPlaymaking(getRandomNumber(60, 100));
+                player.setScoring(getRandomNumber(20, 70));
+                break;
+            default:
+                player.setGoalkeeping(getRandomNumber(0, 20));
+                player.setDefending(getRandomNumber(10, 50));
+                player.setPlaymaking(getRandomNumber(30, 70));
+                player.setScoring(getRandomNumber(60, 100));
+                break;
         }
     }
 

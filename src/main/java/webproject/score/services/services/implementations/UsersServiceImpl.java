@@ -71,7 +71,7 @@ public class UsersServiceImpl implements UsersService {
                 .filter(u -> u.getAuthorities().contains("ROLE_ADMIN"))
                 .collect(Collectors.toList());
 
-        if (admins.size() == 1) {
+        if (admins.size() == 1 && roleString.equals("ROLE_ADMIN")) {
             throw new CannotDeleteLastAdministratorException("Cannot delete last administrator!");
         }
 
@@ -88,11 +88,12 @@ public class UsersServiceImpl implements UsersService {
         User user = this.userRepository.findById(id).orElse(null);
         Role role = this.rolesService.getRole(roleString);
 
-        if (user != null) {
-            Set<Role> roles = user.getAuthorities();
-            roles.add(role);
-            user.setAuthorities(roles);
-            this.userRepository.save(user);
+        if (user == null) {
+            throw new NullPointerException("There is no such user!");
         }
+        Set<Role> roles = user.getAuthorities();
+        roles.add(role);
+        user.setAuthorities(roles);
+        this.userRepository.save(user);
     }
 }
